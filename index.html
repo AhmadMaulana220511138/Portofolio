@@ -1,0 +1,867 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ahmad Maulana | Portfolio</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== GENERAL ===== */
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #0a0a0b;
+            background: #fff;
+        }
+
+        /* ===== BUTTON ===== */
+        .btn-ink,
+        .btn-line {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 26px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all .3s ease;
+        }
+
+        .btn-ink {
+            background: #0a0a0b;
+            color: #fff;
+            border: 1px solid #0a0a0b;
+        }
+
+        .btn-ink:hover {
+            background: #fff;
+            color: #0a0a0b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, .12);
+        }
+
+        .btn-line {
+            background: #fff;
+            color: #0a0a0b;
+            border: 1px solid #d9d9de;
+        }
+
+        .btn-line:hover {
+            border-color: #0a0a0b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, .08);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: calc(100vh - var(--nav-h, 76px));
+            display: flex;
+            align-items: center;
+            padding: 70px 0;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(#dcdce1 1px, transparent 1px);
+            background-size: 26px 26px;
+            -webkit-mask-image: radial-gradient(
+                ellipse at 70% 40%, #000 0%, transparent 70%
+            );
+            mask-image: radial-gradient(
+                ellipse at 70% 40%, #000 0%, transparent 70%
+            );
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            margin-bottom: 22px;
+            background: #fff;
+            border: 1px solid #ececef;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1c1c1f;
+        }
+
+        .hero-badge::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: #0a0a0b;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 5.6vw, 64px);
+            font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -.045em;
+            margin: 0;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: #a1a1a9;
+        }
+
+        .hero p.lead-text {
+            max-width: 540px;
+            margin-top: 24px;
+            color: #6b6b73;
+            font-size: 17px;
+            line-height: 1.85;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 34px;
+        }
+
+        /* ===== CIRCULAR PROFILE PHOTO ===== */
+        .profile-wrap {
+            position: relative;
+            display: inline-block;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            isolation: isolate;
+        }
+
+        .profile-wrap::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            transform: translate(12px, 12px);
+            background: #0a0a0b;
+            border-radius: 50%;
+            z-index: -1;
+            transition: transform .3s ease;
+        }
+
+        .profile-wrap:hover::before {
+            transform: translate(16px, 16px);
+        }
+
+        .profile-image {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 50%;
+            border: 2px solid #0a0a0b;
+            background: #f1f1f3;
+            transition: transform .3s ease;
+        }
+
+        .profile-wrap:hover .profile-image {
+            transform: scale(1.02);
+        }
+
+        /* ===== GENERAL SECTION ===== */
+        section:not(.hero) {
+            padding: 100px 0;
+            scroll-margin-top: 70px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: #9a9aa2;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 3.6vw, 40px);
+            font-weight: 800;
+            letter-spacing: -.04em;
+            margin-bottom: 14px;
+        }
+
+        .section-description {
+            color: #6b6b73;
+            margin-bottom: 48px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .bg-soft {
+            background: #fafafb;
+            border-top: 1px solid #ececef;
+            border-bottom: 1px solid #ececef;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-text {
+            color: #6b6b73;
+            font-size: 17px;
+            line-height: 1.95;
+        }
+
+        
+/* ===== EDUCATION ===== */
+.education-card {
+    position: relative;
+    height: 100%;
+    padding: 28px;
+    background: #fff;
+    border: 1px solid #ececef;
+    border-radius: 16px;
+    transition: all .3s ease;
+}
+
+.education-card:hover {
+    transform: translateY(-6px);
+    border-color: #0a0a0b;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .08);
+}
+
+.education-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 20px;
+    background: #0a0a0b;
+    color: #fff;
+    border-radius: 14px;
+    font-size: 24px;
+    transition: transform .3s ease;
+}
+
+.education-card:hover .education-icon {
+    transform: rotate(-5deg) scale(1.05);
+}
+
+.education-year {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    background: #f3f3f5;
+    color: #0a0a0b;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.education-card h5 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.education-card p {
+    margin-bottom: 0;
+    color: #6b6b73;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+        /* ===== SKILLS ===== */
+        .skill-card {
+            height: 100%;
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #ececef;
+            border-radius: 16px;
+            transition: all .3s ease;
+        }
+
+        .skill-icon {
+            display: grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            margin-bottom: 20px;
+            background: #0a0a0b;
+            color: #fff;
+            border-radius: 14px;
+            font-size: 24px;
+            transition: all .3s ease;
+        }
+
+        .skill-card h5 {
+            font-weight: 700;
+            letter-spacing: -.02em;
+            margin-bottom: 12px;
+        }
+
+        .skill-card p {
+            color: #6b6b73;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-6px);
+            border-color: #0a0a0b;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, .08);
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-section {
+            background: #0a0a0b;
+            color: #fff;
+        }
+
+        .contact-section .eyebrow {
+            color: #8b8b94;
+        }
+
+        .contact-section .section-description {
+            color: #a5a5ad;
+            margin-bottom: 34px;
+        }
+
+        .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: #fff;
+            color: #0a0a0b;
+            border: 1px solid #fff;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all .3s ease;
+        }
+
+        .btn-white:hover {
+            background: transparent;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0a0a0b;
+            color: #8b8b94;
+            padding: 26px 0;
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid #1f1f22;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 991.98px) {
+            .hero {
+                text-align: center;
+                min-height: auto;
+                padding: 60px 0 80px;
+            }
+
+            .hero p.lead-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .profile-wrap {
+                width: 240px;
+                height: 240px;
+                margin-top: 35px;
+            }
+
+            section:not(.hero) {
+                padding: 70px 0;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p.lead-text {
+                font-size: 15px;
+            }
+
+            .profile-wrap {
+                width: 220px;
+                height: 220px;
+            }
+
+            .btn-ink,
+            .btn-line {
+                padding: 12px 18px;
+                font-size: 14px;
+            }
+
+            .skill-card {
+                padding: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar dimuat dari navbar.html -->
+    <div id="navbar-container"></div>
+
+    <!-- HERO / HOME -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-7">
+                    <span class="hero-badge">Halo, selamat datang!</span>
+
+                    <h1>
+                        Saya Ahmad Maulana
+                        
+                    </h1>
+
+                    <p class="lead-text">
+                        Mahasiswa Teknik Informatika yang memiliki keterampilan dalam pengembangan website menggunakan Laravel, PHP, HTML, CSS, dan Bootstrap. Memahami pengelolaan database menggunakan MySQL serta memiliki kemampuan dalam mengoperasikan Microsoft Word, Excel, PowerPoint, dan Canva untuk mendukung kebutuhan administrasi maupun desain visual.
+                    </p>
+
+
+                
+<div class="hero-actions">
+
+    <a href="projects.html" class="btn-ink">
+        Lihat Project
+        <i class="bi bi-arrow-up-right"></i>
+    </a>
+
+    <a href="assets/CV Ahmad Maulana.pdf"
+       class="btn-line"
+       target="_blank"
+       rel="noopener noreferrer">
+        <i class="bi bi-file-earmark-pdf"></i>
+        Lihat CV
+    </a>
+
+    <a href="#contact" class="btn-line">
+        Hubungi Saya
+    </a>
+
+</div>
+
+                </div>
+
+                <div class="col-lg-5 text-center">
+                    <!-- Foto profil -->
+                    <div class="profile-wrap">
+                        <img
+                            src="assets/foto_profile.jpg"
+                            alt="Foto profil Ahmad Maulana"
+                            class="profile-image">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+            <div class="text-center">
+                <span class="eyebrow">About</span>
+                <h2 class="section-title">Tentang Saya</h2>
+                <p class="section-description">
+                    Mengenal lebih dekat profil dan minat saya.
+                </p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-9 text-center">
+                    <p class="about-text">
+                        Saya adalah mahasiswa Teknik Informatika yang tertarik pada
+                        pengembangan aplikasi berbasis web dan teknologi digital.
+                        Saya memiliki keterampilan dalam menggunakan Laravel, PHP,
+                        HTML, CSS, Bootstrap, serta MySQL untuk membangun aplikasi web.
+                        Selain itu, saya mampu mengoperasikan Microsoft Word, Excel,
+                        PowerPoint, dan Canva untuk mendukung kebutuhan administrasi
+                        dan desain visual. Saya senang mempelajari teknologi baru
+                        serta mengembangkan kemampuan untuk menghasilkan solusi
+                        yang fungsional, efektif, dan mudah digunakan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+<!-- EDUCATION -->
+<section id="education">
+    <div class="container">
+
+        <!-- SECTION HEADER -->
+        <div class="text-center">
+            <span class="eyebrow">Education</span>
+            <h2 class="section-title">Pendidikan</h2>
+            <p class="section-description">
+                Riwayat pendidikan yang telah saya tempuh.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <!-- SMA -->
+            <div class="col-md-6 col-lg-5">
+                <div class="education-card">
+
+                    <div class="education-icon">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+
+                    <span class="education-year">
+                        2019 – 2022
+                    </span>
+
+                    <h5>SMA Negeri 1 Dukupuntang</h5>
+
+                    <p>
+                        Sekolah Menengah Atas (SMA).
+                        Menyelesaikan pendidikan pada tahun 2022.
+                    </p>
+
+                </div>
+            </div>
+
+            <!-- SARJANA -->
+            <div class="col-md-6 col-lg-5">
+                <div class="education-card">
+
+                    <div class="education-icon">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+
+                    <span class="education-year">
+                        2022 – 2026
+                    </span>
+
+                    <h5>Universitas Muhammadiyah Cirebon</h5>
+
+                    <p>
+                        S1 Teknik Informatika.
+                        Menyelesaikan pendidikan sarjana
+                        pada tahun 2026.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+    <!-- SKILLS -->
+    <section id="skills" class="bg-soft">
+        <div class="container">
+    
+            <!-- SECTION HEADER -->
+            <div class="text-center">
+                <span class="eyebrow">Skills</span>
+                <h2 class="section-title">Keahlian</h2>
+                <p class="section-description">
+                    Teknologi, tools, dan kemampuan yang saya gunakan
+                    untuk mendukung pengembangan website dan pekerjaan profesional.
+                </p>
+            </div>
+    
+            <div class="row g-4">
+    
+                <!-- WEB DEVELOPMENT -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <h5>Web Development</h5>
+                        <p>
+                            Laravel, PHP, HTML, CSS, dan Bootstrap
+                            untuk membangun serta mengembangkan website
+                            yang responsif dan fungsional.
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- DATABASE -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="bi bi-database"></i>
+                        </div>
+                        <h5>Database</h5>
+                        <p>
+                            MySQL dan Database Design untuk perancangan,
+                            pengelolaan, serta penyimpanan data
+                            secara terstruktur.
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- PROGRAMMING -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="bi bi-terminal"></i>
+                        </div>
+                        <h5>Programming</h5>
+                        <p>
+                            PHP untuk mengembangkan logika program,
+                            mengelola proses aplikasi, dan membangun
+                            fitur website.
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- MICROSOFT OFFICE -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
+                        <h5>Microsoft Office</h5>
+                        <p>
+                            Microsoft Word, Excel, dan PowerPoint
+                            untuk pengolahan dokumen, data,
+                            serta pembuatan presentasi.
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- DATA ENTRY -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="bi bi-pencil-square"></i>
+                        </div>
+                        <h5>Data Entry</h5>
+                        <p>
+                            Memasukkan, memeriksa, dan mengelola data
+                            secara teliti.
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- DESIGN TOOLS -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="bi bi-palette"></i>
+                        </div>
+                        <h5>Design Tools</h5>
+                        <p>
+                            Canva untuk membuat desain visual,
+                            materi presentasi, dan konten kreatif
+                            sesuai kebutuhan.
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- TEAMWORK -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h5>Teamwork</h5>
+                        <p>
+                            Mampu bekerja sama dalam tim, berbagi ide,
+                            berkoordinasi, dan berkontribusi untuk
+                            mencapai tujuan bersama.
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- COMMUNICATION -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="bi bi-chat-dots"></i>
+                        </div>
+                        <h5>Communication</h5>
+                        <p>
+                            Mampu menyampaikan informasi, bertukar
+                            pendapat, dan berkomunikasi secara efektif
+                            dalam menyelesaikan pekerjaan.
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- PROBLEM SOLVING -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h5>Problem Solving</h5>
+                        <p>
+                            Mampu menganalisis permasalahan,
+                            mengidentifikasi kebutuhan, dan mencari
+                            solusi yang sesuai dalam menyelesaikan tugas.
+                        </p>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+
+
+
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+    <div class="container text-center">
+
+        <span class="eyebrow">Contact</span>
+        <h2 class="section-title">Hubungi Saya</h2>
+
+        <p class="section-description">
+            Tertarik untuk berdiskusi atau bekerja sama?
+            Silakan hubungi saya melalui email, WhatsApp,
+            Instagram, atau LinkedIn.
+        </p>
+
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+
+            <!-- EMAIL -->
+            <a href="mailto:ahmadmaulana242004@gmail.com"
+               class="btn-white">
+
+                <i class="bi bi-envelope"></i>
+
+                <span>
+                    Kirim Email
+                    <small>ahmadmaulana242004@gmail.com</small>
+                </span>
+            </a>
+
+            <!-- WHATSAPP -->
+            <a href="https://wa.me/6283822697527"
+               class="btn-white"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <i class="bi bi-whatsapp"></i>
+
+                <span>
+                    WhatsApp
+                    <small>Hubungi saya langsung</small>
+                </span>
+            </a>
+
+            <!-- INSTAGRAM -->
+            <a href="https://www.instagram.com/a.hmadmaulana/?hl=en"
+               class="btn-white"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <i class="bi bi-instagram"></i>
+
+                <span>
+                    Instagram
+                    <small>Kunjungi profil saya</small>
+                </span>
+            </a>
+
+            <!-- LINKEDIN -->
+            <a href="https://www.linkedin.com/in/ahmad-maulana-0831b3425"
+               class="btn-white"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <i class="bi bi-linkedin"></i>
+
+                <span>
+                    LinkedIn
+                    <small>Terhubung secara profesional</small>
+                </span>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p class="mb-0">
+                &copy; 2026 Ahmad Maulana. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript Navbar -->
+    <script src="navbar.js"></script>
+
+</body>
+</html>

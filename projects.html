@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kumpulan project Ahmad Maulana di bidang pengembangan web dan sistem informasi.">
+    <title>Projects | Ahmad Maulana</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #101010;
+            --dark: #171717;
+            --gray: #6b6b6b;
+            --light: #f6f6f6;
+            --white: #ffffff;
+            --border: #e8e8e8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #navbar-container {
+            position: relative;
+            z-index: 1000;
+        }
+
+        /* HERO */
+        .projects-hero {
+            padding: 100px 0 76px;
+            background:
+                radial-gradient(
+                    circle at 85% 10%,
+                    rgba(0, 0, 0, .055),
+                    transparent 28%
+                ),
+                var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 16px;
+            color: #666;
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            max-width: 850px;
+            margin: 0 auto 20px;
+            font-size: clamp(2.5rem, 6vw, 4.8rem);
+            line-height: 1.08;
+            letter-spacing: -.065em;
+            font-weight: 800;
+        }
+
+        .hero-title span {
+            color: #777;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--gray);
+            font-size: 1.03rem;
+        }
+
+        /* PROJECT SECTION */
+        .projects-section {
+            padding: 82px 0 100px;
+        }
+
+        .section-heading {
+            margin-bottom: 38px;
+        }
+
+        .section-title {
+            margin-bottom: 12px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -.055em;
+        }
+
+        .section-description {
+            max-width: 620px;
+            margin: 0 auto;
+            color: var(--gray);
+        }
+
+        /* PROJECT CARD */
+        .project-card {
+            height: 100%;
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease,
+                border-color .3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: #c9c9c9;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, .08);
+        }
+
+        /* COVER GAMBAR PROJECT */
+        .project-cover {
+            height: 220px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 0;
+            background: #f1f1f1;
+        }
+
+        .project-cover img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform .4s ease;
+        }
+
+        .project-card:hover .project-cover img {
+            transform: scale(1.04);
+        }
+
+        /* PROJECT CONTENT */
+        .project-content {
+            display: flex;
+            flex-direction: column;
+            padding: 27px;
+            height: calc(100% - 220px);
+        }
+
+        .project-type {
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 12px;
+            padding: 6px 11px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: #555;
+            font-size: .72rem;
+            font-weight: 700;
+        }
+
+        .project-title {
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -.025em;
+            line-height: 1.5;
+        }
+
+        .project-description {
+            flex-grow: 1;
+            margin-bottom: 20px;
+            color: var(--gray);
+            font-size: .92rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+
+        .tech-list span {
+            padding: 6px 10px;
+            border-radius: 7px;
+            background: var(--light);
+            color: #333;
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        /* BUTTON LIHAT GAMBAR */
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            align-self: flex-start;
+            gap: 8px;
+            padding: 10px 16px;
+            border: 1px solid var(--black);
+            border-radius: 9px;
+            background: var(--black);
+            color: var(--white);
+            font-family: inherit;
+            font-size: .85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition:
+                background .25s ease,
+                color .25s ease,
+                gap .25s ease,
+                transform .25s ease;
+        }
+
+        .project-link:hover {
+            gap: 12px;
+            background: var(--white);
+            color: var(--black);
+            transform: translateY(-2px);
+        }
+
+        .note-box {
+            margin-top: 35px;
+            padding: 18px 20px;
+            border: 1px dashed #d2d2d2;
+            border-radius: 14px;
+            color: #666;
+            font-size: .86rem;
+        }
+
+        /* MODAL SLIDESHOW */
+        .project-modal-content {
+            overflow: hidden;
+            border: none;
+            border-radius: 16px;
+            background: #fff;
+        }
+
+        .project-modal-content .modal-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .project-modal-content .modal-title {
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        .project-modal-content .modal-body {
+            padding: 0;
+        }
+
+        .project-modal-stage {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            background: #f3f3f3;
+        }
+
+        .project-modal-image {
+            display: block;
+            width: 100%;
+            height: 65vh;
+            max-height: 650px;
+            object-fit: contain;
+        }
+
+        /* Panah slideshow */
+        .project-carousel-control {
+            width: 52px;
+            height: 52px;
+            top: 50%;
+            bottom: auto;
+            transform: translateY(-50%);
+            margin: 0 14px;
+            border: 1px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            background: rgba(16, 16, 16, .8);
+            opacity: .85;
+            transition: opacity .2s ease, background .2s ease;
+        }
+
+        .project-carousel-control:hover {
+            background: #000;
+            opacity: 1;
+        }
+
+        .project-carousel-control .carousel-control-prev-icon,
+        .project-carousel-control .carousel-control-next-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Indikator */
+        .project-carousel-indicators {
+            position: static;
+            gap: 7px;
+            margin: 0;
+            padding: 16px 0 8px;
+        }
+
+        .project-carousel-indicators button {
+            width: 8px;
+            height: 8px;
+            margin: 0 !important;
+            border: 0;
+            border-radius: 50%;
+            background-color: #c5c5c5;
+            opacity: 1;
+        }
+
+        .project-carousel-indicators button.active {
+            background-color: #111;
+        }
+
+        .project-image-counter {
+            padding: 0 0 18px;
+            color: #777;
+            font-size: .8rem;
+            text-align: center;
+        }
+
+        /* CONTACT */
+        .contact-cta {
+            padding: 72px 20px;
+            color: var(--white);
+            background: var(--black);
+            text-align: center;
+        }
+
+        .contact-cta .eyebrow {
+            color: #bdbdbd;
+        }
+
+        .contact-cta h2 {
+            margin-bottom: 14px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -.05em;
+        }
+
+        .contact-cta p {
+            max-width: 560px;
+            margin: 0 auto 26px;
+            color: #c5c5c5;
+        }
+
+        .btn-white {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 13px 22px;
+            border: 1px solid var(--white);
+            border-radius: 999px;
+            background: var(--white);
+            color: var(--black);
+            font-weight: 800;
+            transition:
+                background .25s ease,
+                color .25s ease,
+                transform .25s ease;
+        }
+
+        .btn-white:hover {
+            background: transparent;
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 24px 0;
+            color: #777;
+            background: #0a0a0a;
+            border-top: 1px solid #292929;
+            font-size: .85rem;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 767.98px) {
+            .projects-hero {
+                padding: 76px 0 58px;
+            }
+
+            .projects-section {
+                padding: 60px 0 72px;
+            }
+
+            .project-cover {
+                height: 200px;
+            }
+
+            .project-content {
+                padding: 22px;
+            }
+
+            .project-modal-image {
+                height: 42vh;
+            }
+
+            .project-modal-stage {
+                min-height: 220px;
+            }
+
+            .project-carousel-control {
+                width: 40px;
+                height: 40px;
+                margin: 0 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar-container"></div>
+
+    <!-- HERO -->
+    <header class="projects-hero">
+        <div class="container text-center">
+            <span class="eyebrow">Portfolio / Projects</span>
+
+            <h1 class="hero-title">
+                Project yang Saya <span>Kembangkan.</span>
+            </h1>
+
+            <p class="hero-description">
+                Berikut beberapa project yang pernah saya kerjakan
+                sebagai bagian dari proses belajar dan pengembangan
+                kemampuan di bidang teknologi.
+            </p>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- PROJECTS -->
+        <section class="projects-section" id="projects">
+            <div class="container">
+
+                <div class="section-heading text-center">
+                    <span class="eyebrow">Selected Work</span>
+
+                    <h2 class="section-title">Project Saya</h2>
+
+                    <p class="section-description">
+                        Beberapa sistem dan aplikasi yang berfokus pada
+                        kebutuhan pengguna, pengelolaan data, dan
+                        kemudahan penggunaan.
+                    </p>
+                </div>
+
+                <div class="row g-4">
+
+                    <!-- PROJECT 1: SEWA CAMPING -->
+                    <div class="col-md-6 col-lg-4">
+                        <article class="project-card">
+
+                            <div class="project-cover">
+                                <img src="assets/kampus1.png"
+                                     alt="Tampilan utama aplikasi sewa peralatan camping"
+                                     loading="lazy">
+                            </div>
+
+                            <div class="project-content">
+                                <span class="project-type">
+                                    Web Development
+                                </span>
+
+                                <h3 class="project-title">
+                                    Sistem Informasi Pengaduan Fasilitas Kampus
+                                </h3>
+
+                                <p class="project-description">
+                                    Membangun sistem informasi pengaduan fasilitas kampus berbasis web untuk mempermudah mahasiswa dalam 
+                                    menyampaikan laporan kerusakan atau permasalahan fasilitas. Mengembangkan fitur pengelolaan pengaduan, status laporan, serta 
+                                    manajemen data oleh admin. 
+                                </p>
+
+                                <div class="tech-list">
+                                    <span>Laravel</span>
+                                    <span>PHP</span>
+                                    <span>MySQL</span>
+                                    <span>Bootstrap</span>
+                                </div>
+
+                                <button type="button"
+                                        class="project-link"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#projectImageModal"
+                                        data-title="Sistem Informasi Sewa Peralatan Camping & Outdoor"
+                                        data-images="assets/kampus1.png,assets/kampus2.png,assets/kampus3.png">
+                                    <i class="bi bi-images"></i>
+                                    Lihat Gambar
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </button>
+                            </div>
+
+                        </article>
+                    </div>
+
+                    <!-- PROJECT 2: APLIKASI KEUANGAN -->
+                    <div class="col-md-6 col-lg-4">
+                        <article class="project-card">
+
+                            <div class="project-cover">
+                                <img src="assets/pkl1.png"
+                                     alt="Tampilan utama aplikasi pencatatan keuangan"
+                                     loading="lazy">
+                            </div>
+
+                            <div class="project-content">
+                                <span class="project-type">
+                                    Web Application
+                                </span>
+
+                                <h3 class="project-title">
+                                    Sistem Informasi Pendaftaran PKL/Magang Berbasis Website
+                                </h3>
+
+                                <p class="project-description">
+                                    Mengembangkan sistem informasi berbasis web untuk membantu proses pendaftaran dan pengelolaan data peserta 
+                                    PKL dan magang pada Dinas Pendidikan Kabupaten Cirebon. 
+
+                                <div class="tech-list">
+                                    <span>Laravel</span>
+                                    <span>PHP</span>
+                                    <span>MySQL</span>
+                                    <span>Bootstrap</span>
+                                </div>
+
+                                <button type="button"
+                                        class="project-link"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#projectImageModal"
+                                        data-title="Aplikasi Pencatatan Keuangan"
+                                        data-images="assets/pkl1.png,assets/pkl2.png,assets/pkl3.png">
+                                    <i class="bi bi-images"></i>
+                                    Lihat Gambar
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </button>
+                            </div>
+
+                        </article>
+                    </div>
+
+                    <!-- PROJECT 3: PENILAIAN KINERJA GURU -->
+                    <div class="col-md-6 col-lg-4">
+                        <article class="project-card">
+
+                            <div class="project-cover">
+                                <img src="assets/spk1.png"
+                                     alt="Dashboard Sistem Penilaian Kinerja Guru"
+                                     loading="lazy">
+                            </div>
+
+                            <div class="project-content">
+                                <span class="project-type">
+                                    Decision Support System
+                                </span>
+
+                                <h3 class="project-title">
+                                    Sistem Pendukung Keputusan Penilaian Kinerja Guru Pada 5 SMP Negeri Kota Cirebon
+                                </h3>
+
+                                <p class="project-description">
+                                    Sistem pendukung keputusan untuk membantu
+                                    proses penilaian dan perangkingan kinerja
+                                    guru menggunakan metode Analytical Hierarchy
+                                    Process (AHP) dan Simple Additive Weighting
+                                    (SAW).
+                                </p>
+
+                                <div class="tech-list">
+                                    <span>Laravel</span>
+                                    <span>PHP</span>
+                                    <span>MySQL</span>
+                                    <span>AHP</span>
+                                    <span>SAW</span>
+                                </div>
+
+                                <button type="button"
+                                        class="project-link"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#projectImageModal"
+                                        data-title="Sistem Penilaian Kinerja Guru"
+                                        data-images="assets/spk1.png,assets/spk2.png,assets/spk3.png">
+                                    <i class="bi bi-images"></i>
+                                    Lihat Gambar
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </button>
+                            </div>
+
+                        </article>
+                    </div>
+
+                    
+<!-- PROJECT 4: LANDING PAGE AJM TEKNIK -->
+<div class="col-md-6 col-lg-4">
+    <article class="project-card">
+
+        <!-- COVER PROJECT -->
+        <div class="project-cover">
+            <img src="assets/ajm1.png"
+                 alt="Landing Page Toko Alat Bangunan AJM Teknik"
+                 loading="lazy">
+        </div>
+
+        <div class="project-content">
+            <span class="project-type">
+                Website Development
+            </span>
+
+            <h3 class="project-title">
+                Landing Page Toko Alat Bangunan AJM Teknik
+            </h3>
+
+            <p class="project-description">
+                Landing page sebagai media informasi dan promosi produk
+                alat bangunan secara online, dilengkapi katalog produk,
+                informasi toko, serta fitur pemesanan melalui WhatsApp.
+            </p>
+
+            <div class="tech-list">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Bootstrap</span>
+                <span>WhatsApp</span>
+            </div>
+
+            <!-- TOMBOL LIHAT 3 FOTO -->
+            <button type="button"
+                    class="project-link"
+                    data-bs-toggle="modal"
+                    data-bs-target="#projectImageModal"
+                    data-title="Landing Page Toko Alat Bangunan AJM Teknik"
+                    data-images="assets/ajm1.png,assets/ajm2.png,assets/ajm3.png">
+
+                <i class="bi bi-images"></i>
+                Lihat Gambar
+                <i class="bi bi-arrow-up-right"></i>
+            </button>
+
+        </div>
+    </article>
+</div>
+
+
+<!-- PROJECT: DESAIN CANVA -->
+<div class="col-md-6 col-lg-4">
+    <article class="project-card">
+
+        <!-- COVER PROJECT -->
+        <div class="project-cover">
+            <img src="assets/canva1.png"
+                 alt="Desain Canva"
+                 loading="lazy">
+        </div>
+
+        <div class="project-content">
+
+            <span class="project-type">
+                Graphic Design
+            </span>
+
+            <h3 class="project-title">
+                Desain Grafis Canva
+            </h3>
+
+            <p class="project-description">
+                Membuat desain visual sederhana menggunakan Canva
+                untuk kebutuhan presentasi, konten visual,
+                dan media informasi dengan tampilan yang menarik
+                dan mudah dipahami.
+            </p>
+
+            <div class="tech-list">
+                <span>Canva</span>
+                <span>Basic Design</span>
+            </div>
+
+            <!-- TOMBOL LIHAT DESAIN -->
+            <button type="button"
+            class="project-link"
+            data-bs-toggle="modal"
+            data-bs-target="#projectImageModal"
+            data-title="Sistem Penilaian Kinerja Guru"
+            data-images="assets/canva1.png,assets/canva2.png,assets/canva3.png">
+        <i class="bi bi-images"></i>
+        Lihat Gambar
+        <i class="bi bi-arrow-up-right"></i>
+    </button>
+
+        </div>
+    </article>
+</div>
+
+<!-- PROJECT: AFTER MOVIE KKM -->
+<div class="col-md-6 col-lg-4">
+    <article class="project-card">
+
+        <!-- VIDEO YOUTUBE -->
+        <div class="project-cover">
+            <iframe
+                src="https://www.youtube.com/embed/GlvUfZKo-Yo"
+                title="After Movie KKM"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- KONTEN PROJECT -->
+        <div class="project-content">
+
+            <span class="project-type">
+                Video Documentation
+            </span>
+
+            <h3 class="project-title">
+                After Movie KKM
+            </h3>
+
+            <p class="project-description">
+                Video dokumentasi yang merangkum kegiatan,
+                kebersamaan, dan pengalaman selama pelaksanaan
+                Kuliah Kerja Mahasiswa (KKM), sebagai kenangan
+                sekaligus dokumentasi pengabdian kepada masyarakat.
+            </p>
+
+            <div class="tech-list">
+                <span>Video Editing</span>
+                <span>Documentation</span>
+                <span>After Movie</span>
+            </div>
+
+            <!-- TOMBOL YOUTUBE -->
+            <a href="https://youtu.be/GlvUfZKo-Yo"
+               class="project-link"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <i class="bi bi-youtube"></i>
+                Buka di YouTube
+                <i class="bi bi-arrow-up-right"></i>
+            </a>
+
+        </div>
+    </article>
+</div>
+
+
+
+
+
+
+                </div>
+
+                <div class="note-box text-center">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Klik tombol Lihat Gambar untuk melihat tiga screenshot
+                    dari setiap project.
+                </div>
+
+            </div>
+        </section>
+
+        <!-- MODAL SLIDESHOW -->
+        <div class="modal fade"
+             id="projectImageModal"
+             tabindex="-1"
+             aria-labelledby="projectImageTitle"
+             aria-hidden="true">
+
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content project-modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="projectImageTitle">
+                            Preview Project
+                        </h5>
+
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Tutup">
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div id="projectCarousel"
+                             class="carousel slide"
+                             data-bs-touch="true">
+
+                            <div class="carousel-inner"
+                                 id="projectCarouselImages">
+                            </div>
+
+                            <!-- FOTO SEBELUMNYA -->
+                            <button class="carousel-control-prev project-carousel-control"
+                                    type="button"
+                                    data-bs-target="#projectCarousel"
+                                    data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"
+                                      aria-hidden="true"></span>
+                                <span class="visually-hidden">Foto sebelumnya</span>
+                            </button>
+
+                            <!-- FOTO BERIKUTNYA -->
+                            <button class="carousel-control-next project-carousel-control"
+                                    type="button"
+                                    data-bs-target="#projectCarousel"
+                                    data-bs-slide="next">
+                                <span class="carousel-control-next-icon"
+                                      aria-hidden="true"></span>
+                                <span class="visually-hidden">Foto berikutnya</span>
+                            </button>
+
+                            <!-- INDIKATOR FOTO -->
+                            <div class="carousel-indicators project-carousel-indicators"
+                                 id="projectCarouselIndicators">
+                            </div>
+
+                        </div>
+
+                        <!-- NOMOR FOTO -->
+                        <div class="project-image-counter"
+                             id="projectImageCounter"
+                             aria-live="polite">
+                            Foto 1 dari 3
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            &copy; <span id="current-year"></span>
+            Ahmad Maulana. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- TAHUN OTOMATIS -->
+    <script>
+        document.getElementById("current-year").textContent =
+            new Date().getFullYear();
+    </script>
+
+    <!-- SLIDESHOW PROJECT -->
+    <script>
+        const projectModal = document.getElementById("projectImageModal");
+        const carouselElement = document.getElementById("projectCarousel");
+        const carouselImages = document.getElementById("projectCarouselImages");
+        const carouselIndicators = document.getElementById("projectCarouselIndicators");
+        const imageCounter = document.getElementById("projectImageCounter");
+
+        let projectCarousel = null;
+
+        // Membuka modal dan menampilkan gambar sesuai project
+        projectModal.addEventListener("show.bs.modal", function (event) {
+            const button = event.relatedTarget;
+
+            if (!button) return;
+
+            const title = button.getAttribute("data-title");
+            const images = button.getAttribute("data-images")
+                .split(",")
+                .map(image => image.trim())
+                .filter(Boolean);
+
+            document.getElementById("projectImageTitle").textContent = title;
+
+            // Bersihkan carousel sebelumnya
+            if (projectCarousel) {
+                projectCarousel.dispose();
+                projectCarousel = null;
+            }
+
+            carouselImages.innerHTML = "";
+            carouselIndicators.innerHTML = "";
+
+            // Buat slide dan indikator secara otomatis
+            images.forEach(function (image, index) {
+                const slide = document.createElement("div");
+
+                slide.className =
+                    "carousel-item" + (index === 0 ? " active" : "");
+
+                const stage = document.createElement("div");
+                stage.className = "project-modal-stage";
+
+                const img = document.createElement("img");
+                img.src = image;
+                img.alt = title + " - Foto " + (index + 1);
+                img.className = "project-modal-image";
+
+                stage.appendChild(img);
+                slide.appendChild(stage);
+                carouselImages.appendChild(slide);
+
+                const indicator = document.createElement("button");
+
+                indicator.type = "button";
+                indicator.setAttribute(
+                    "data-bs-target",
+                    "#projectCarousel"
+                );
+                indicator.setAttribute("data-bs-slide-to", index);
+                indicator.setAttribute(
+                    "aria-label",
+                    "Tampilkan foto " + (index + 1)
+                );
+
+                if (index === 0) {
+                    indicator.classList.add("active");
+                    indicator.setAttribute("aria-current", "true");
+                }
+
+                carouselIndicators.appendChild(indicator);
+            });
+
+            // Mulai slideshow otomatis setiap 3 detik
+            projectCarousel = new bootstrap.Carousel(carouselElement, {
+                interval: 3000,
+                ride: "carousel",
+                wrap: true,
+                touch: true,
+                pause: false
+            });
+
+            projectCarousel.to(0);
+
+            imageCounter.textContent = "Foto 1 dari " + images.length;
+        });
+
+        // Perbarui nomor foto setiap slide berganti
+        carouselElement.addEventListener("slid.bs.carousel", function (event) {
+            const slides = carouselImages.querySelectorAll(".carousel-item");
+
+            imageCounter.textContent =
+                "Foto " + (event.to + 1) + " dari " + slides.length;
+        });
+
+        // Hentikan slideshow ketika modal ditutup
+        projectModal.addEventListener("hidden.bs.modal", function () {
+            if (projectCarousel) {
+                projectCarousel.dispose();
+                projectCarousel = null;
+            }
+
+            carouselImages.innerHTML = "";
+            carouselIndicators.innerHTML = "";
+        });
+    </script>
+
+    <!-- NAVBAR -->
+    <script src="navbar.js"></script>
+
+</body>
+</html>
